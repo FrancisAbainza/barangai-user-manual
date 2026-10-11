@@ -1,0 +1,641 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Barangay Maduya Portal Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Zilla+Slab:wght@600;700&display=swap">
+<style>
+/* Layout: a civic handbook. Sticky contents rail on the left (desktop), one readable column of steps on the right. Brand blue taken from the portal itself. */
+:root {
+  --bg: oklch(0.99 0.004 262);
+  --surface: oklch(0.965 0.01 262);
+  --fg: oklch(0.22 0.02 262);
+  --muted: oklch(0.48 0.02 262);
+  --line: oklch(0.9 0.012 262);
+  --brand: oklch(0.457 0.131 262.5);
+  --brand-soft: oklch(0.93 0.035 262.5);
+  --ok: oklch(0.5 0.12 150);
+  --ok-soft: oklch(0.93 0.05 150);
+  --warn: oklch(0.52 0.12 70);
+  --warn-soft: oklch(0.94 0.06 85);
+  --bad: oklch(0.52 0.17 25);
+  --bad-soft: oklch(0.94 0.04 25);
+  --font-display: "Zilla Slab", Georgia, "Times New Roman", serif;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(0.17 0.012 262);
+    --surface: oklch(0.22 0.016 262);
+    --fg: oklch(0.93 0.01 262);
+    --muted: oklch(0.72 0.02 262);
+    --line: oklch(0.32 0.02 262);
+    --brand: oklch(0.72 0.12 262.5);
+    --brand-soft: oklch(0.3 0.06 262.5);
+    --ok: oklch(0.78 0.12 150);
+    --ok-soft: oklch(0.3 0.05 150);
+    --warn: oklch(0.82 0.11 85);
+    --warn-soft: oklch(0.32 0.05 85);
+    --bad: oklch(0.75 0.13 25);
+    --bad-soft: oklch(0.32 0.06 25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: oklch(0.17 0.012 262);
+  --surface: oklch(0.22 0.016 262);
+  --fg: oklch(0.93 0.01 262);
+  --muted: oklch(0.72 0.02 262);
+  --line: oklch(0.32 0.02 262);
+  --brand: oklch(0.72 0.12 262.5);
+  --brand-soft: oklch(0.3 0.06 262.5);
+  --ok: oklch(0.78 0.12 150);
+  --ok-soft: oklch(0.3 0.05 150);
+  --warn: oklch(0.82 0.11 85);
+  --warn-soft: oklch(0.32 0.05 85);
+  --bad: oklch(0.75 0.13 25);
+  --bad-soft: oklch(0.32 0.06 25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  padding-inline: 16px;
+  padding-block: 0 64px;
+}
+a { color: var(--brand); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 2px; }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 900px) {
+  .wrap { grid-template-columns: 230px minmax(0, 1fr); gap: 56px; }
+}
+
+/* Masthead */
+.masthead {
+  grid-column: 1 / -1;
+  padding-block: 48px 32px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 12px;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5vw, 3rem); }
+.lede { max-width: 62ch; color: var(--muted); font-size: 1.08rem; margin: 0; }
+.who {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;
+}
+.who a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--fg); text-decoration: none; font-weight: 600; font-size: 0.92rem;
+}
+.who a:hover { border-color: var(--brand); }
+.who a span { color: var(--muted); font-weight: 400; }
+
+/* Contents rail */
+nav.toc { font-size: 0.9rem; }
+@media (min-width: 900px) {
+  nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; max-height: calc(100vh - 48px); overflow-y: auto; padding-block: 8px; }
+}
+nav.toc .group { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-block: 18px 6px; }
+nav.toc .group:first-child { margin-top: 0; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav.toc a { display: block; padding: 4px 10px; border-left: 2px solid var(--line); color: var(--fg); text-decoration: none; }
+nav.toc a:hover { border-left-color: var(--brand); color: var(--brand); }
+@media (max-width: 899px) {
+  nav.toc { border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--surface); }
+  nav.toc .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0 24px; }
+}
+
+/* Content */
+main { min-width: 0; display: grid; gap: 64px; }
+.part-head { display: grid; gap: 8px; padding-bottom: 8px; border-bottom: 2px solid var(--brand); }
+.part-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.1rem); }
+.part-head p { margin: 0; color: var(--muted); max-width: 62ch; }
+.part { display: grid; gap: 48px; }
+
+section { display: grid; gap: 14px; scroll-margin-top: 24px; }
+section > h3 { font-size: 1.45rem; }
+section > p, section > ul { margin: 0; max-width: 68ch; }
+.where { font-size: 0.88rem; color: var(--muted); margin: -6px 0 0; }
+.where b { color: var(--fg); font-weight: 600; }
+
+h4 { font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 10px 0 0; }
+
+/* Steps: a real sequence, so numbers are earned */
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 12px; max-width: 68ch; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; }
+ol.steps > li::before {
+  content: counter(s);
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--brand-soft); color: var(--brand);
+  font-weight: 700; font-size: 0.88rem; font-variant-numeric: tabular-nums;
+}
+ol.steps > li > div { padding-top: 2px; }
+
+ul { padding-left: 1.2em; }
+ul li + li { margin-top: 4px; }
+
+.ui { font-weight: 600; white-space: nowrap; }
+.ui::before { content: "\201C"; color: var(--muted); font-weight: 400; }
+.ui::after { content: "\201D"; color: var(--muted); font-weight: 400; }
+
+/* Notes */
+.note {
+  max-width: 68ch;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.note strong { color: var(--brand); }
+.note.warn { background: var(--warn-soft); border-color: transparent; }
+.note.warn strong { color: var(--fg); }
+
+/* Status chips */
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; }
+.flow .arrow { color: var(--muted); }
+.chip {
+  display: inline-block; padding: 2px 10px; border-radius: 999px;
+  font-size: 0.82rem; font-weight: 600; white-space: nowrap;
+  border: 1px solid var(--line); color: var(--fg); background: var(--bg);
+}
+.chip.go { background: var(--brand-soft); color: var(--brand); border-color: transparent; }
+.chip.done { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.chip.stop { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; max-width: 100%; }
+table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { background: var(--surface); font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+td .sub { display: block; font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+
+.badge-admin {
+  display: inline-block; font-family: var(--font-body); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px;
+  background: var(--fg); color: var(--bg); vertical-align: middle; margin-left: 6px;
+}
+
+.faq { display: grid; gap: 10px; max-width: 72ch; }
+details { border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+summary { cursor: pointer; padding: 12px 16px; font-weight: 600; }
+summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 8px; }
+details > div { padding: 0 16px 14px; color: var(--fg); }
+details p { margin: 0; }
+
+footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font-size: 0.85rem; }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">User Manual · Barangay Maduya, Carmona, Cavite</div>
+    <h1>Barangay Maduya Online Portal</h1>
+    <p class="lede">Request documents, report concerns, book the court and follow barangay news from your phone or computer. This guide walks you through each part of the portal, one step at a time.</p>
+    <div class="who">
+      <a href="#start">Getting started <span>· everyone</span></a>
+      <a href="#residents">For residents <span>· services</span></a>
+      <a href="#staff">For barangay staff <span>· admins</span></a>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Contents">
+    <div class="cols">
+      <div>
+        <div class="group">Getting started</div>
+        <ol>
+          <li><a href="#account">Create an account</a></li>
+          <li><a href="#navigate">Find your way around</a></li>
+          <li><a href="#credentials">Resident Credentials</a></li>
+        </ol>
+      </div>
+      <div>
+        <div class="group">For residents</div>
+        <ol>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#documents">Document Request</a></li>
+          <li><a href="#complaints">Complaint</a></li>
+          <li><a href="#court">Court Reservation</a></li>
+          <li><a href="#hub">Community Hub</a></li>
+          <li><a href="#news">News &amp; Announcements</a></li>
+          <li><a href="#transparency">Transparency</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+          <li><a href="#assistant">AI Assistant</a></li>
+        </ol>
+      </div>
+      <div>
+        <div class="group">For barangay staff</div>
+        <ol>
+          <li><a href="#roles">Admin roles</a></li>
+          <li><a href="#admin-home">Admin Home</a></li>
+          <li><a href="#review">Reviewing submissions</a></li>
+          <li><a href="#publish">News and projects</a></li>
+          <li><a href="#users">User Management</a></li>
+          <li><a href="#settings">Barangay Settings</a></li>
+          <li><a href="#kb">AI Knowledge Base</a></li>
+        </ol>
+      </div>
+      <div>
+        <div class="group">Reference</div>
+        <ol>
+          <li><a href="#statuses">Status meanings</a></li>
+          <li><a href="#faq">Common questions</a></li>
+        </ol>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- GETTING STARTED -->
+    <div class="part" id="start">
+      <div class="part-head">
+        <div class="eyebrow">Part 1</div>
+        <h2>Getting started</h2>
+        <p>Do these three things once. After that, every service in the portal is open to you.</p>
+      </div>
+
+      <section id="account">
+        <h3>Create an account and sign in</h3>
+        <ol class="steps">
+          <li><div>Open the Barangay Maduya website. You can read the news, transparency projects and About Us pages without an account.</div></li>
+          <li><div>Click <span class="ui">Sign Up</span> at the top of the page (on a phone, open the menu first).</div></li>
+          <li><div>Fill in the sign-up form and follow the on-screen steps to verify your email address.</div></li>
+          <li><div>Next time, click <span class="ui">Sign In</span>. You will go straight to the portal's Home page.</div></li>
+        </ol>
+        <div class="note"><strong>New accounts are resident accounts.</strong> Barangay staff are given admin access by a Super Admin after they sign up. See <a href="#roles">Admin roles</a>.</div>
+      </section>
+
+      <section id="navigate">
+        <h3>Find your way around</h3>
+        <ul>
+          <li><b>On a computer:</b> the menu runs down the left side of the screen. Click the small panel button at its top edge to shrink it to icons.</li>
+          <li><b>On a phone:</b> tap the menu button at the top-left to open the menu. It closes when you pick a page.</li>
+          <li><b>Your account:</b> click your profile picture at the bottom of the menu. Choose <span class="ui">My Profile</span> to see your details and your past requests, or <span class="ui">Manage account</span> to change your name, photo, email or password. You can also sign out here.</li>
+          <li><b>Light or dark screen:</b> click the sun or moon button beside your name. The portal remembers your choice.</li>
+        </ul>
+      </section>
+
+      <section id="credentials">
+        <h3>Fill in your Resident Credentials</h3>
+        <p>Your Resident Credentials prove that you live in Barangay Maduya. You need them before you can request documents, file a complaint or reserve the court. You only do this once.</p>
+        <ol class="steps">
+          <li><div>Click your profile picture, then <span class="ui">My Profile</span>. You can also click <span class="ui">Complete Resident Credentials</span> on the Home page.</div></li>
+          <li><div>Enter your full name, birthdate, sex, civil status, contact number and complete address (house or unit number, street and purok).</div></li>
+          <li><div>Choose your valid ID type, such as the Philippine National ID, Passport, Driver's License, UMID, Voter's ID, PhilHealth, SSS or Postal ID.</div></li>
+          <li><div>Upload a clear photo of the <b>front</b> and the <b>back</b> of that ID.</div></li>
+          <li><div>Save. The services that were locked are now open.</div></li>
+        </ol>
+        <div class="note"><strong>Tip:</strong> take the ID photo in good light, flat on a table, with all four corners showing. Staff may reject a request if they cannot read your ID.</div>
+      </section>
+    </div>
+
+    <!-- RESIDENTS -->
+    <div class="part" id="residents">
+      <div class="part-head">
+        <div class="eyebrow">Part 2</div>
+        <h2>For residents</h2>
+        <p>Each section below matches one item in the portal's menu.</p>
+      </div>
+
+      <section id="home">
+        <h3>Home</h3>
+        <p class="where">Menu: <b>Home</b></p>
+        <p>Home is your starting point. It shows:</p>
+        <ul>
+          <li><b>Quick Actions:</b> shortcuts to request a document, file a complaint, reserve the court and more.</li>
+          <li><b>My Activity:</b> your latest requests, complaints and reservations with their current status.</li>
+          <li><b>Latest News:</b> the newest barangay announcements.</li>
+        </ul>
+      </section>
+
+      <section id="documents">
+        <h3>Document Request</h3>
+        <p class="where">Menu: <b>Document Request</b> · Needs Resident Credentials</p>
+        <p>Request barangay certificates online, then pick them up at the Barangay Hall or receive a soft copy online.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Document</th><th>Use it for</th><th>What you provide</th></tr></thead>
+            <tbody>
+              <tr><td>Barangay Clearance</td><td>Employment, bank or loan requirements, business, legal transactions</td><td>Purpose and a GCash payment receipt. The fee depends on the purpose and is shown in the form.</td></tr>
+              <tr><td>Certificate of Residency</td><td>Proof that you live in the barangay (work, school, travel, government transactions)</td><td>Purpose</td></tr>
+              <tr><td>Certificate of No Objection</td><td>Business permits, construction or renovation, tricycle operation, events, use of public space</td><td>Purpose</td></tr>
+              <tr><td>Certificate of Indigency</td><td>Medical, financial, burial, scholarship or subsidy assistance</td><td>Purpose, a short description of your situation, supporting documents</td></tr>
+              <tr><td>Solo Parent Certification</td><td>Solo Parent ID and benefits</td><td>Purpose, a short description of your situation, supporting documents</td></tr>
+              <tr><td>Medical / Lab Assistance</td><td>Hospital, laboratory, medicine or surgery assistance</td><td>Purpose, a short description of your situation, supporting documents</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>How to request</h4>
+        <ol class="steps">
+          <li><div>Open <b>Document Request</b> and click the document you need.</div></li>
+          <li><div>Choose your purpose. If it is not listed, pick <span class="ui">Other</span> and type it in.</div></li>
+          <li><div><b>Barangay Clearance only:</b> send the amount shown to the barangay's GCash number (also shown in the form), take a screenshot of the receipt, and upload it.</div></li>
+          <li><div>Choose how to receive it: <span class="ui">Pickup at Barangay Hall</span> or <span class="ui">Online Soft Copy</span>.</div></li>
+          <li><div>Click <span class="ui">Submit Request</span>. It appears under <b>My Requests</b>.</div></li>
+        </ol>
+        <h4>What happens next</h4>
+        <div class="flow"><span class="chip">Pending</span><span class="arrow">→</span><span class="chip go">Processing</span><span class="arrow">→</span><span class="chip done">Ready for Pickup</span><span class="arrow">or</span><span class="chip stop">Rejected</span></div>
+        <p>You get a notification when your request is ready, with a message from staff and any attached files. If it is rejected, the notification explains why so you can fix it and submit again.</p>
+      </section>
+
+      <section id="complaints">
+        <h3>Complaint</h3>
+        <p class="where">Menu: <b>Complaint</b> · Needs Resident Credentials</p>
+        <p>Report a community concern such as noise, garbage, broken roads, flooding, traffic, water or electricity problems.</p>
+        <div class="note warn"><strong>This is not for emergencies.</strong> For fires, crimes in progress or medical emergencies, call the emergency hotline or go to the Barangay Hall right away.</div>
+        <ol class="steps">
+          <li><div>Open <b>Complaint</b> and click <span class="ui">Report a Complaint</span>.</div></li>
+          <li><div>Write a short <b>Subject</b>, then describe what happened in as much detail as you can.</div></li>
+          <li><div>Mark the <b>Location of Incident</b> on the map. You can use your current location.</div></li>
+          <li><div>Add photos or videos as <b>Evidence</b> if you have them.</div></li>
+          <li><div>Submit. The portal sorts your complaint into a category and priority so the right staff see it first.</div></li>
+        </ol>
+        <div class="flow"><span class="chip">Pending</span><span class="arrow">→</span><span class="chip go">In Progress</span><span class="arrow">→</span><span class="chip done">Resolved</span><span class="arrow">or</span><span class="chip stop">Dismissed</span></div>
+        <p>When your complaint is resolved or dismissed, you get a notification with a message from staff.</p>
+      </section>
+
+      <section id="court">
+        <h3>Court Reservation</h3>
+        <p class="where">Menu: <b>Court Reservation</b> · Needs Resident Credentials</p>
+        <p>Book the barangay court for games, practice or events.</p>
+        <ol class="steps">
+          <li><div>Click <span class="ui">Availability</span> to see which times are already booked.</div></li>
+          <li><div>Click the button to reserve, then pick the <b>Date</b> and type the <b>Purpose</b> (for example, "Basketball practice").</div></li>
+          <li><div>Pick a <b>Start Time</b> and how many hours you need. You can start at any minute, but you book in whole hours and must finish by midnight.</div></li>
+          <li><div>Check the <b>Total Amount Due</b>. Daytime (6:00 AM to 6:00 PM) and nighttime (6:00 PM to 6:00 AM) have different hourly rates, and the form shows the charge for each hour.</div></li>
+          <li><div>Send the total to the barangay's GCash number, upload a screenshot of the receipt, and submit.</div></li>
+        </ol>
+        <div class="flow"><span class="chip">Pending</span><span class="arrow">→</span><span class="chip done">Approved</span><span class="arrow">or</span><span class="chip stop">Rejected</span></div>
+        <div class="note"><strong>Overlap warning:</strong> if your time overlaps another booking, the form tells you before you submit. Pick a different time.</div>
+      </section>
+
+      <section id="hub">
+        <h3>Community Hub</h3>
+        <p class="where">Menu: <b>Community Hub</b></p>
+        <p>A directory of verified local businesses in Barangay Maduya.</p>
+        <h4>Find a business</h4>
+        <ul>
+          <li>Scroll the list or switch to the map to see businesses near you.</li>
+          <li>Use the filter to narrow by category (Food &amp; Beverage, Retail, Services and more) or to show only your own businesses.</li>
+          <li>Open a business to see its contact number, social media page, opening days and hours, and photos.</li>
+        </ul>
+        <h4>List your business</h4>
+        <ol class="steps">
+          <li><div>Click the button to submit a business.</div></li>
+          <li><div>Enter the name, description, category, contact number and (optional) social media link.</div></li>
+          <li><div>Tick the days you are open and set opening and closing times.</div></li>
+          <li><div>Upload photos, a copy of your business permit, and pin the location on the map.</div></li>
+          <li><div>Submit. Staff check it before it appears to everyone.</div></li>
+        </ol>
+        <div class="flow"><span class="chip">Pending</span><span class="arrow">→</span><span class="chip go">Processing</span><span class="arrow">→</span><span class="chip done">Verified</span><span class="arrow">or</span><span class="chip stop">Rejected</span></div>
+      </section>
+
+      <section id="news">
+        <h3>News &amp; Announcements</h3>
+        <p class="where">Menu: <b>News &amp; Announcements</b></p>
+        <p>Official posts from the barangay, labelled <b>Announcement</b>, <b>Event</b> or <b>Emergency</b>. On each post you can:</p>
+        <ul>
+          <li><span class="ui">Like</span> or <span class="ui">Dislike</span> it.</li>
+          <li><span class="ui">Comment</span> and reply to other residents.</li>
+          <li><span class="ui">Share</span> a link to it.</li>
+        </ul>
+      </section>
+
+      <section id="transparency">
+        <h3>Transparency</h3>
+        <p class="where">Menu: <b>Transparency</b></p>
+        <p>See what the barangay is building and spending on: infrastructure, health, education, livelihood and more. Each project shows its description, budget, photos, attached files and location on the map. You can react to and comment on projects.</p>
+      </section>
+
+      <section id="about">
+        <h3>About Us</h3>
+        <p class="where">Menu: <b>About Us</b></p>
+        <p>The barangay's mission and vision, and the current Barangay and Sangguniang Kabataan (SK) officials.</p>
+      </section>
+
+      <section id="notifications">
+        <h3>Notifications</h3>
+        <p class="where">Menu: <b>Notifications</b></p>
+        <p>Every status change on your document requests, complaints, court reservations and business listings shows up here. A number beside <b>Notifications</b> in the menu tells you how many you have not read yet. Click a notification to open the related item.</p>
+      </section>
+
+      <section id="assistant">
+        <h3>AI Assistant</h3>
+        <p class="where">The round chat button in the bottom corner of every portal page</p>
+        <p>Ask questions about barangay services in plain words. For example:</p>
+        <ul>
+          <li>"What do I need for a Certificate of Indigency?"</li>
+          <li>"How much is the court at night?"</li>
+          <li>"I want to report uncollected garbage on our street."</li>
+        </ul>
+        <p>When your question matches a form or page, the assistant shows a button under its answer. Click it to go straight to that form.</p>
+        <p>To speak instead of typing, click the microphone, talk, then click it again. Your browser will ask for microphone permission the first time.</p>
+        <div class="note"><strong>Remember:</strong> the assistant gives general guidance. Official decisions on your requests come from barangay staff.</div>
+      </section>
+    </div>
+
+    <!-- STAFF -->
+    <div class="part" id="staff">
+      <div class="part-head">
+        <div class="eyebrow">Part 3</div>
+        <h2>For barangay staff</h2>
+        <p>Admins see the same menu as residents plus <b>User Management</b> and <b>Barangay Settings</b>. On each service page, admins see every resident's submissions instead of only their own.</p>
+      </div>
+
+      <section id="roles">
+        <h3>Admin roles</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Role</th><th>Can do</th></tr></thead>
+            <tbody>
+              <tr><td>Resident<span class="sub">default for every new account</span></td><td>Use all resident services in Part 2.</td></tr>
+              <tr><td>Admin</td><td>Review and update all submissions, post news and projects, ban or unban users, change barangay settings, manage the AI knowledge base.</td></tr>
+              <tr><td>Super Admin</td><td>Everything an Admin can do, plus change other users' roles and delete user accounts.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Your role is shown under your name at the bottom of the menu.</p>
+      </section>
+
+      <section id="admin-home">
+        <h3>Admin Home</h3>
+        <p class="where">Menu: <b>Home</b></p>
+        <ul>
+          <li><b>Needs Attention:</b> the newest submissions waiting for action. Click one to open it. When this says <span class="ui">All caught up</span>, nothing is waiting.</li>
+          <li><b>Pending summary:</b> counts of pending requests in each service.</li>
+          <li><b>Shortcuts:</b> quick links to management pages.</li>
+        </ul>
+      </section>
+
+      <section id="review">
+        <h3>Reviewing submissions</h3>
+        <p class="where">Document Request, Complaint, Court Reservation and Community Hub pages</p>
+        <p>All four services work the same way.</p>
+        <ol class="steps">
+          <li><div>Open the page. Use the filters to narrow by status, category, priority or date.</div></li>
+          <li><div>Find the row and click its actions button (the three dots).</div></li>
+          <li><div>Choose <span class="ui">Submission Info</span> to see everything the resident sent, including their Resident Credentials, ID photos, payment receipt and attachments.</div></li>
+          <li><div>Choose <span class="ui">Set status</span> and pick the new status. The resident is notified automatically.</div></li>
+        </ol>
+        <p>Some statuses ask you for a message, which the resident sees in their notification:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Setting this status</th><th>Asks you for</th></tr></thead>
+            <tbody>
+              <tr><td>Document: Ready for Pickup</td><td>A message (for example, where and when to claim it) and optional attachments, such as the soft copy</td></tr>
+              <tr><td>Document: Rejected</td><td>The reason, so the resident can correct it</td></tr>
+              <tr><td>Complaint: Resolved</td><td>A message describing what was done, with optional photos</td></tr>
+              <tr><td>Complaint: Dismissed</td><td>The reason for dismissing it</td></tr>
+              <tr><td>Court: Rejected</td><td>The reason</td></tr>
+              <tr><td>Business: Rejected</td><td>The reason (for example, an unreadable permit)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>Extra tools</h4>
+        <ul>
+          <li><b>Complaints:</b> inside <span class="ui">Submission Info</span>, click <span class="ui">Get AI-generated insights</span> for a suggested solution, budget estimate, manpower, timeframe, public safety risk and prevention advice. Use it as a starting point only.</li>
+          <li><b>Complaints and Community Hub:</b> switch to the map view to see where submissions are.</li>
+          <li><b>Court Reservation:</b> admins can book the court for barangay activities. The GCash receipt is optional for admin bookings.</li>
+          <li><b>Community Hub:</b> admins can edit a listing. Businesses added by an admin are verified right away.</li>
+          <li><span class="ui">Delete</span> in the actions menu removes the record permanently.</li>
+        </ul>
+      </section>
+
+      <section id="publish">
+        <h3>Posting news and transparency projects</h3>
+        <p class="where">Menu: <b>News &amp; Announcements</b> or <b>Transparency</b></p>
+        <ol class="steps">
+          <li><div>Click the create button at the top of the page.</div></li>
+          <li><div><b>News:</b> enter a title, pick Announcement, Event or Emergency, write the content and add photos or videos.<br><b>Project:</b> enter a title, category, description, budget, location on the map, photos and attached files (for example, a budget report PDF).</div></li>
+          <li><div>Publish. To change or remove a post later, use the edit or delete option on the post itself.</div></li>
+        </ol>
+      </section>
+
+      <section id="users">
+        <h3>User Management</h3>
+        <p class="where">Menu: <b>User Management</b></p>
+        <p>Two tabs: <b>Active Users</b> and <b>Deleted Users</b>. Open the actions button on any row.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Action</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td>View Profile</td><td>Opens the user's profile, Resident Credentials and submission history.</td></tr>
+              <tr><td>Ban User / Unban User</td><td>Stops or restores the user's ability to sign in. Their records stay.</td></tr>
+              <tr><td>Role <span class="badge-admin">Super Admin</span></td><td>Sets the user as Resident, Admin or Super Admin.</td></tr>
+              <tr><td>Delete User <span class="badge-admin">Super Admin</span></td><td>Deletes the account. Their name and email are kept in <b>Deleted Users</b> so old records still show who submitted them.</td></tr>
+              <tr><td>Delete All User Data<span class="sub">Deleted Users tab</span></td><td>Permanently erases everything that deleted user submitted. This cannot be undone.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="settings">
+        <h3>Barangay Settings</h3>
+        <p class="where">Menu: <b>Barangay Settings</b></p>
+        <ul>
+          <li><b>Document Pricing:</b> the GCash number residents pay to, and the Barangay Clearance fee for each purpose.</li>
+          <li><b>Court Reservation Fees:</b> the daytime and nighttime hourly rates.</li>
+          <li><b>Mission &amp; Vision:</b> the text shown on About Us.</li>
+          <li><b>Barangay Officials</b> and <b>Sangguniang Kabataan:</b> add, edit or remove officials, with their position and photo.</li>
+        </ul>
+        <p>Changes take effect right away for everyone.</p>
+      </section>
+
+      <section id="kb">
+        <h3>AI Knowledge Base</h3>
+        <p class="where">AI Assistant chat button → <b>Knowledge Base</b> tab</p>
+        <p>The AI Assistant answers from one PDF document that you upload, such as a citizen's charter listing requirements, fees and office hours.</p>
+        <ol class="steps">
+          <li><div>Open the AI Assistant and switch to the <b>Knowledge Base</b> tab.</div></li>
+          <li><div>Drop in or choose a PDF file.</div></li>
+          <li><div>Wait until it finishes processing. This can take up to a minute.</div></li>
+        </ol>
+        <div class="note warn"><strong>Uploading a new PDF replaces the old one.</strong> Put all the information you want the assistant to know into a single file.</div>
+      </section>
+    </div>
+
+    <!-- REFERENCE -->
+    <div class="part">
+      <div class="part-head">
+        <div class="eyebrow">Reference</div>
+        <h2>Quick reference</h2>
+      </div>
+
+      <section id="statuses">
+        <h3>What each status means</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><span class="chip">Pending</span></td><td>Received. No one has looked at it yet.</td></tr>
+              <tr><td><span class="chip go">Processing</span> <span class="chip go">In Progress</span></td><td>A staff member is working on it. Their name appears on the item.</td></tr>
+              <tr><td><span class="chip done">Ready for Pickup</span></td><td>Your document is ready. Read the notification for where to claim it or to download the soft copy.</td></tr>
+              <tr><td><span class="chip done">Approved</span> <span class="chip done">Verified</span> <span class="chip done">Resolved</span></td><td>Done and accepted.</td></tr>
+              <tr><td><span class="chip stop">Rejected</span> <span class="chip stop">Dismissed</span></td><td>Not accepted. The notification gives the reason.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h3>Common questions</h3>
+        <div class="faq">
+          <details>
+            <summary>I can't request a document, file a complaint or reserve the court.</summary>
+            <div><p>Fill in your <a href="#credentials">Resident Credentials</a> first. These services stay locked until you do.</p></div>
+          </details>
+          <details>
+            <summary>How do I pay?</summary>
+            <div><p>Payments are by GCash only. Send the amount shown in the form to the barangay's GCash number, take a screenshot of the receipt, and upload it with your request. Only Barangay Clearance and court reservations need payment.</p></div>
+          </details>
+          <details>
+            <summary>My request was rejected. What now?</summary>
+            <div><p>Open the notification to read the reason, fix the problem (for example, upload a clearer ID or receipt), then submit a new request.</p></div>
+          </details>
+          <details>
+            <summary>The microphone button doesn't work.</summary>
+            <div><p>Your browser blocked the microphone. Click the lock icon in the address bar, allow the microphone for this site, and reload the page.</p></div>
+          </details>
+          <details>
+            <summary>I can't sign in.</summary>
+            <div><p>Use the forgot-password option on the sign-in screen to reset your password. If it says your account is banned, visit the Barangay Hall.</p></div>
+          </details>
+          <details>
+            <summary>How do I change my name, email or password?</summary>
+            <div><p>Click your profile picture at the bottom of the menu and choose <span class="ui">Manage account</span>. To change your address or ID, edit your Resident Credentials on <span class="ui">My Profile</span>.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>Barangay Maduya Online Portal · User Manual · Fees, GCash number and officials shown in the portal are kept up to date by barangay staff and may change.</footer>
+</div>
+
+</body></html>
